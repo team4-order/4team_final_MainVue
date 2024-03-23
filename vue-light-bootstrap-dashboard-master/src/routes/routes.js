@@ -11,6 +11,9 @@ import Icons from 'src/pages/Icons.vue'
 import Maps from 'src/pages/Maps.vue'
 import Notifications from 'src/pages/Notifications.vue'
 import Upgrade from 'src/pages/Upgrade.vue'
+import BusinessTable from 'src/pages/TableList1.vue'
+import OrderList from 'src/pages/TableList2.vue'
+import OrderDetailList from 'src/pages/TableList3.vue'
 
 const routes = [
   {
@@ -62,6 +65,34 @@ const routes = [
         path: 'upgrade',
         name: 'Upgrade to PRO',
         component: Upgrade
+      }
+      // ,
+      // {
+      //   path: '/customer/:customerCode', // 라우트 경로에 매개변수를 추가합니다.
+      //   name: 'OrderList',
+      //   component: OrderList
+      // }
+    ]
+  },
+  {
+    path: '/business/:businessId', 
+    name: 'Business',
+    component: BusinessTable
+  },
+  {
+    path: '/orders', // 라우트 경로에 매개변수를 추가합니다.
+    component: OrderList,
+    children: [
+      {
+        path: 'customer/:customerCode',
+        name: 'OrderList',
+        component: OrderList
+      },
+      {
+        path: 'detail/:orderNumber',
+        name: 'OrderDetailList',
+        component: OrderDetailList,
+        props: true
       }
     ]
   },
